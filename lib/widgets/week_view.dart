@@ -12,6 +12,10 @@ class WeekViewState extends State<WeekView> {
   DateTime today = DateTime.now();
 
   Widget _buildCard(DateTime day) {
+    bool isToday = day.day == today.day &&
+        day.month == today.month &&
+        day.year == today.year;
+
     return Expanded(
       child: Card(
         child: Container(
@@ -21,7 +25,21 @@ class WeekViewState extends State<WeekView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(day.day.toString()),
+                Container(
+                  padding: EdgeInsets.all(6),
+                  child: Text(
+                    day.day.toString(),
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 20,
+                    ),
+                  ),
+                  decoration: isToday ? BoxDecoration(
+                    // color: Colors.deepPurple,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: Colors.deepPurple, width: 2.0,)
+                  ) : BoxDecoration(),
+                ),
               ],
             ),
           ),
@@ -32,7 +50,7 @@ class WeekViewState extends State<WeekView> {
 
   List<Widget> _buildCards(int numVisible) {
     List<Widget> list = [];
-    DateTime firstDay = today.subtract(Duration(days: numVisible));
+    DateTime firstDay = today.subtract(Duration(days: numVisible - 1));
 
     for (int i = 0; i < daysVisible; i++) {
       list.add(_buildCard(firstDay.add(Duration(days: i))));
