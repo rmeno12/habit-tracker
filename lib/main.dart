@@ -35,10 +35,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Flex(
+          direction: Axis.vertical,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            new WeekView(),
+            WeekView(),
+            Spacer(flex: 5),
+            Container(),
           ],
         ),
       ),
