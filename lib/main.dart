@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habittracker/widgets/week_view.dart';
+import 'package:habittracker/widgets/week_view_pager.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,7 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,15 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Flex(
-          direction: Axis.vertical,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            WeekView(),
-            Spacer(flex: 5),
-            Container(),
-          ],
-        ),
+        child: WeekViewPager()
       ),
     );
   }

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class WeekView extends StatefulWidget {
-  WeekView();
+  DateTime lastDay;
+
+  WeekView(DateTime end) {
+    lastDay = end;
+  }
 
   @override
   WeekViewState createState() => new WeekViewState();
@@ -9,12 +13,12 @@ class WeekView extends StatefulWidget {
 
 class WeekViewState extends State<WeekView> {
   int daysVisible = 5;
-  DateTime today = DateTime.now();
+  bool isChanging = false;
 
   Widget _buildCard(DateTime day) {
-    bool isToday = day.day == today.day &&
-        day.month == today.month &&
-        day.year == today.year;
+    bool isToday = day.day == DateTime.now().day &&
+        day.month == DateTime.now().month &&
+        day.year == DateTime.now().year;
 
     return Expanded(
       child: Card(
@@ -34,11 +38,15 @@ class WeekViewState extends State<WeekView> {
                       fontSize: 20,
                     ),
                   ),
-                  decoration: isToday ? BoxDecoration(
-                    // color: Colors.deepPurple,
-                    shape: BoxShape.circle,
-                    border: Border.all(color: Colors.deepPurple, width: 2.0,)
-                  ) : BoxDecoration(),
+                  decoration: isToday
+                      ? BoxDecoration(
+                          // color: Colors.deepPurple,
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: Colors.deepPurple,
+                            width: 2.0,
+                          ))
+                      : BoxDecoration(),
                 ),
               ],
             ),
@@ -50,7 +58,7 @@ class WeekViewState extends State<WeekView> {
 
   List<Widget> _buildCards(int numVisible) {
     List<Widget> list = [];
-    DateTime firstDay = today.subtract(Duration(days: numVisible - 1));
+    DateTime firstDay = widget.lastDay.subtract(Duration(days: numVisible - 1));
 
     for (int i = 0; i < daysVisible; i++) {
       list.add(_buildCard(firstDay.add(Duration(days: i))));
