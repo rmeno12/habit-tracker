@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'event.dart';
 
-class Cell extends StatelessWidget {
+class Cell extends StatefulWidget {
   DateTime _day;
   bool _isToday;
   List<Event> _events;
@@ -13,6 +13,10 @@ class Cell extends StatelessWidget {
     _events = events;
   }
 
+  CellState createState() => new CellState();
+}
+
+class CellState extends State<Cell> {
   Widget build(BuildContext build) {
     return Expanded(
       child: Card(
@@ -37,9 +41,9 @@ class Cell extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(6),
       child: Text(
-        _day.day.toString(),
+        widget._day.day.toString(),
         style: TextStyle(
-          color: _isToday ? Colors.deepPurple : Colors.grey,
+          color: widget._isToday ? Colors.deepPurple : Colors.grey,
           fontSize: 20,
         ),
       ),
@@ -50,7 +54,7 @@ class Cell extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: _events.map((event) => _buildMarker(event.color)).toList(),
+      children: widget._events.map((event) => _buildMarker(event.color)).toList(),
     );
   }
 
