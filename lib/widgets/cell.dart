@@ -28,19 +28,10 @@ class Cell extends StatelessWidget {
                   child: Text(
                     _day.day.toString(),
                     style: TextStyle(
-                      color: Colors.grey,
+                      color: _isToday ? Colors.deepPurple : Colors.grey,
                       fontSize: 20,
                     ),
                   ),
-                  decoration: _isToday
-                      ? BoxDecoration(
-                          // color: Colors.deepPurple,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: Colors.deepPurple,
-                            width: 2.0,
-                          ))
-                      : BoxDecoration(),
                 ),
               ],
             ),
