@@ -19,9 +19,9 @@ class Event {
 
   static Event fromString(String inp) {
     List<String> parts = inp.split(',');
-    Color color = Color(int.parse(parts[0]));
+    Color color = Color(int.parse(parts[0].substring(1)));
     String name = parts[1];
-    String value = parts[2].substring(0, parts[2].length);
+    String value = parts[2].substring(0, parts[2].length - 1);
 
     return Event(color: color, name: name, value: value);
   }
