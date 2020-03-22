@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+@immutable
 class Event {
   final Color color;
   final String name;
