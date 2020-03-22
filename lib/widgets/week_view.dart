@@ -4,11 +4,9 @@ import 'package:habittracker/widgets/event.dart';
 import 'cell.dart';
 
 class WeekView extends StatefulWidget {
-  DateTime lastDay;
+  final DateTime lastDay;
 
-  WeekView(DateTime end) {
-    lastDay = end;
-  }
+  const WeekView(this.lastDay);
 
   @override
   WeekViewState createState() => new WeekViewState();
@@ -19,6 +17,11 @@ class WeekViewState extends State<WeekView> {
   bool isChanging = false;
   List<Event> eventList = [
     Event(DateTime.now(), Colors.blue, "e1", "v1"),
+    Event(DateTime.now(), Colors.green, "e2", "v2"),
+    Event(DateTime.now(), Colors.green, "e2", "v2"),
+    Event(DateTime.now(), Colors.green, "e2", "v2"),
+    Event(DateTime.now(), Colors.green, "e2", "v2"),
+    Event(DateTime.now(), Colors.green, "e2", "v2"),
     Event(DateTime.now(), Colors.green, "e2", "v2"),
   ];
 

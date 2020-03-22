@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'event.dart';
 
 class Cell extends StatefulWidget {
-  DateTime _day;
-  bool _isToday;
-  List<Event> _events;
+  final maxMarkers = 7;
+  final DateTime day;
+  final bool isToday;
+  final List<Event> events;
 
-  Cell({DateTime day, bool isToday, List<Event> events}) {
-    _day = day;
-    _isToday = isToday;
-    _events = events;
-  }
+  const Cell({this.day, this.isToday, this.events});
+
 
   CellState createState() => new CellState();
 }
@@ -41,9 +39,9 @@ class CellState extends State<Cell> {
     return Container(
       padding: EdgeInsets.all(6),
       child: Text(
-        widget._day.day.toString(),
+        widget.day.day.toString(),
         style: TextStyle(
-          color: widget._isToday ? Colors.deepPurple : Colors.grey,
+          color: widget.isToday ? Colors.deepPurple : Colors.grey,
           fontSize: 20,
         ),
       ),
@@ -54,7 +52,8 @@ class CellState extends State<Cell> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
-      children: widget._events.map((event) => _buildMarker(event.color)).toList(),
+      children:
+          widget.events.map((event) => _buildMarker(event.color)).toList(),
     );
   }
 
