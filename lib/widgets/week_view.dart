@@ -16,11 +16,11 @@ class WeekViewState extends State<WeekView> {
   int daysVisible = 5;
   bool isChanging = false;
   List<Event> eventList = [
-    Event(DateTime.now(), Colors.blue, "e1", "v1"),
-    Event(DateTime.now(), Colors.green, "e2", "v2"),
-    Event(DateTime.now(), Colors.green, "e2", "v2"),
-    Event(DateTime.now(), Colors.green, "e2", "v2"),
-    Event(DateTime.now(), Colors.green, "e2", "v2"),
+    Event(color: Colors.blue, name: "e1", value: "v1"),
+    Event(color: Colors.green, name: "e2", value: "v2"),
+    Event(color: Colors.green, name: "e2", value: "v2"),
+    Event(color: Colors.green, name: "e2", value: "v2"),
+    Event(color: Colors.green, name: "e2", value: "v2"),
   ];
 
   Widget _buildCell(DateTime day) {
