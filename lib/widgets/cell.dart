@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'event.dart';
+import 'package:habittracker/util/event.dart';
 
 class Cell extends StatefulWidget {
   final maxMarkers = 7;

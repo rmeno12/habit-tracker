@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habittracker/widgets/event.dart';
+import 'package:habittracker/util/event.dart';
 
 import 'cell.dart';
 
