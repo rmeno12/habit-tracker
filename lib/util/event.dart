@@ -25,4 +25,20 @@ class Event {
 
     return Event(color: color, name: name, value: value);
   }
+
+  @override
+  int get hashCode {
+    int result = 13;
+    result = 33 * result + color.hashCode;
+    result = 33 * result + name.hashCode;
+    result = 33 * result + value.hashCode;
+    return result;
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    if (other is! Event) return false;
+    Event event = other;
+    return (event.color == color && event.name == name && event.value == value);
+  }
 }
