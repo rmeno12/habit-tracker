@@ -1,4 +1,4 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class Event {
   final Color color;
@@ -39,6 +39,6 @@ class Event {
   bool operator ==(dynamic other) {
     if (other is! Event) return false;
     Event event = other;
-    return (event.color == color && event.name == name && event.value == value);
+    return (event.color.value == color.value && event.name == name && event.value == value);
   }
 }

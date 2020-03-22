@@ -8,8 +8,8 @@ void main() {
       final Event event =
           Event(color: Colors.blue, name: 'name', value: 'value');
 
-      String out = event.toString();
-      String colorString = Colors.blue.value.toString();
+      final String out = event.toString();
+      final String colorString = Colors.blue.value.toString();
 
       expect(out, '{' + colorString + ',name,value}');
     });
