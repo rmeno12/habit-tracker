@@ -34,7 +34,7 @@ class Day {
   }
 
   static List<Event> getEventListFromString(String inp) {
-    List<Event> events = json.decode(inp).map((event) => Event.fromString(event));
+    List<Event> events = List<Event>.from(json.decode(inp).map((event) => Event.fromString(event)).toList());
 
     return events;
   }
