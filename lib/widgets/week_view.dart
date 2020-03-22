@@ -21,8 +21,6 @@ class WeekViewState extends State<WeekView> {
     Event(DateTime.now(), Colors.green, "e2", "v2"),
     Event(DateTime.now(), Colors.green, "e2", "v2"),
     Event(DateTime.now(), Colors.green, "e2", "v2"),
-    Event(DateTime.now(), Colors.green, "e2", "v2"),
-    Event(DateTime.now(), Colors.green, "e2", "v2"),
   ];
 
   Widget _buildCell(DateTime day) {

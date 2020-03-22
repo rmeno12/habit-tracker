@@ -16,6 +16,8 @@ class Cell extends StatefulWidget {
 
 class CellState extends State<Cell> {
   Widget build(BuildContext build) {
+    bool isOverflow = widget.events.length > 7;
+
     return Expanded(
       child: Card(
         child: Container(
@@ -24,6 +26,7 @@ class CellState extends State<Cell> {
             aspectRatio: 1.0 / 2.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 _buildText(),
                 _buildMarkers(),
@@ -49,11 +52,14 @@ class CellState extends State<Cell> {
   }
 
   Widget _buildMarkers() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children:
-          widget.events.map((event) => _buildMarker(event.color)).toList(),
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 3),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children:
+            widget.events.map((event) => _buildMarker(event.color)).toList(),
+      ),
     );
   }
 
