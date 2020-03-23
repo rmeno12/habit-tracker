@@ -49,7 +49,7 @@ class DatabaseHelper {
     final db = await database;
     var result = await db.query("Days", where: "id = ?", whereArgs: [date]);
 
-    return result.isNotEmpty ? Day.fromMap(result.first) : Null;
+    return result.isNotEmpty ? Day.fromMap(result.first) : 0;
   }
 
   Future<int> updateDay(Day day) async {
