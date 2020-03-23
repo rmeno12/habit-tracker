@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habittracker/widgets/week_view.dart';
+import 'package:habittracker/widgets/database_tester.dart';
 import 'package:habittracker/widgets/week_view_pager.dart';
 
 void main() => runApp(MyApp());
@@ -34,8 +34,13 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: WeekViewPager(),
+      body: Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Expanded(child: WeekViewPager()),
+          ],
+        ),
       ),
     );
   }
