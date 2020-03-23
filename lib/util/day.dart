@@ -9,6 +9,7 @@ import 'package:intl/intl.dart';
 class Day {
   final DateTime date;
   final List<Event> eventList;
+  static final DateFormat formatter = DateFormat('yyyy-MM-dd');
 
   Day({this.date, this.eventList});
 
@@ -31,7 +32,6 @@ class Day {
   }
 
   String createDateString() {
-    final DateFormat formatter = DateFormat('yyyy-MM-dd');
     String dateString = formatter.format(date);
 
     return dateString;

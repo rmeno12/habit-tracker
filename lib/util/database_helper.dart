@@ -30,7 +30,7 @@ class DatabaseHelper {
       onOpen: (db) {},
       onCreate: (Database db, int version) async {
         await db.execute("CREATE TABLE Days ("
-            "id TEXT PRIMARY KEY"
+            "id TEXT PRIMARY KEY,"
             "event_list TEXT"
             ")");
       },
@@ -39,7 +39,8 @@ class DatabaseHelper {
 
   Future<int> newDay(Day day) async {
     final db = await database;
-    var result = await db.insert("Days", day.toMap());
+    var result = await db.insert("Days", day.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
 
     return result;
   }
@@ -53,16 +54,16 @@ class DatabaseHelper {
 
   Future<int> updateDay(Day day) async {
     final db = await database;
-    var result = await db
-        .update("Days", day.toMap(), where: "id = ?", whereArgs: [day.date]);
+    var result = await db.update("Days", day.toMap(),
+        where: "id = ?", whereArgs: [Day.formatter.format(day.date)]);
 
     return result;
   }
 
   Future<int> deleteDay(Day day) async {
     final db = await database;
-    var result =
-        await db.delete("Days", where: "id = ?", whereArgs: [day.date]);
+    var result = await db.delete("Days",
+        where: "id = ?", whereArgs: [Day.formatter.format(day.date)]);
 
     return result;
   }
