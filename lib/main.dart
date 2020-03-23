@@ -36,9 +36,9 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Expanded(child: WeekViewPager()),
-            DatabaseTester(),
           ],
         ),
       ),
