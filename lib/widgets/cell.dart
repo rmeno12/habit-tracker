@@ -10,10 +10,10 @@ class Cell extends StatefulWidget {
 
   const Cell({this.date});
 
-  CellState createState() => new CellState();
+  _CellState createState() => new _CellState();
 }
 
-class CellState extends State<Cell> {
+class _CellState extends State<Cell> {
   bool isToday;
   Future<dynamic> day;
 

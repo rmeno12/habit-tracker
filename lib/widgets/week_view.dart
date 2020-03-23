@@ -9,10 +9,10 @@ class WeekView extends StatefulWidget {
   const WeekView(this.lastDay);
 
   @override
-  WeekViewState createState() => new WeekViewState();
+  _WeekViewState createState() => new _WeekViewState();
 }
 
-class WeekViewState extends State<WeekView> {
+class _WeekViewState extends State<WeekView> {
   int daysVisible = 5;
   bool isChanging = false;
   List<Event> eventList = [

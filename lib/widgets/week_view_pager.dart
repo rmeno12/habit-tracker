@@ -6,10 +6,10 @@ class WeekViewPager extends StatefulWidget {
   WeekViewPager();
 
   @override
-  WeekViewPagerState createState() => new WeekViewPagerState();
+  _WeekViewPagerState createState() => new _WeekViewPagerState();
 }
 
-class WeekViewPagerState extends State<WeekViewPager> {
+class _WeekViewPagerState extends State<WeekViewPager> {
   Widget build(BuildContext context) {
     return PageView.builder(
       controller: PageController(initialPage: 2048),
