@@ -24,14 +24,8 @@ class WeekViewState extends State<WeekView> {
   ];
 
   Widget _buildCell(DateTime day) {
-    bool isToday = day.day == DateTime.now().day &&
-        day.month == DateTime.now().month &&
-        day.year == DateTime.now().year;
-
     return Cell(
-      day: day,
-      isToday: isToday,
-      events: eventList,
+      date: day,
     );
   }
 

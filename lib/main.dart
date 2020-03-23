@@ -39,6 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Expanded(child: WeekViewPager()),
+            DatabaseTester(),
           ],
         ),
       ),
