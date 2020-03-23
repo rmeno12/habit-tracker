@@ -45,6 +45,8 @@ class WeekViewState extends State<WeekView> {
       padding: EdgeInsets.all(8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: _buildCells(daysVisible),
       ),
     );
