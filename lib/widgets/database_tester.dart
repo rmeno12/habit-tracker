@@ -3,17 +3,18 @@ import 'package:habittracker/util/database_helper.dart';
 import 'package:habittracker/util/day.dart';
 import 'package:habittracker/util/event.dart';
 
+@immutable
 class DatabaseTester extends StatelessWidget {
   DatabaseTester();
 
-  List<Event> eventList = [
+  final List<Event> eventList = [
     Event(color: Colors.blue, name: "e1", value: "v1"),
     Event(color: Colors.green, name: "e2", value: "v2"),
     Event(color: Colors.green, name: "e2", value: "v2"),
     Event(color: Colors.green, name: "e2", value: "v2"),
     Event(color: Colors.green, name: "e2", value: "v2"),
   ];
-  DateTime now = DateTime.now();
+  final DateTime now = DateTime.now();
 
   Widget build(BuildContext context) {
     return Row(
