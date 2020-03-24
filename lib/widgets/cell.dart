@@ -61,7 +61,7 @@ class _CellState extends State<Cell> with TickerProviderStateMixin {
   }
 
   Widget _buildText() {
-    return StreamBuilder<DateTime>(
+    return StreamBuilder<dynamic>(
         stream: widget.selectionController.stream,
         builder: (context, snapshot) {
           bool isSelected = snapshot.data ==
