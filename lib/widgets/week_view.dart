@@ -1,39 +1,37 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:habittracker/util/event.dart';
 
 import 'cell.dart';
 
 class WeekView extends StatefulWidget {
+  final int daysVisible = 5;
   final DateTime lastDay;
+  final StreamController<int> selectionController;
 
-  const WeekView(this.lastDay);
+  const WeekView({this.lastDay, this.selectionController});
 
   @override
   _WeekViewState createState() => new _WeekViewState();
 }
 
-class _WeekViewState extends State<WeekView> {
-  int daysVisible = 5;
-  bool isChanging = false;
-  List<Event> eventList = [
-    Event(color: Colors.blue, name: "e1", value: "v1"),
-    Event(color: Colors.green, name: "e2", value: "v2"),
-    Event(color: Colors.green, name: "e2", value: "v2"),
-    Event(color: Colors.green, name: "e2", value: "v2"),
-    Event(color: Colors.green, name: "e2", value: "v2"),
-  ];
+class _WeekViewState extends State<WeekView> with AutomaticKeepAliveClientMixin{
+
+  @override
+  bool get wantKeepAlive => true;
 
   Widget _buildCell(DateTime day) {
     return Cell(
       date: day,
+      selectionController: widget.selectionController,
     );
   }
 
-  List<Widget> _buildCells(int numVisible) {
+  List<Widget> _buildCells() {
     List<Widget> list = [];
-    DateTime firstDay = widget.lastDay.subtract(Duration(days: numVisible - 1));
+    DateTime firstDay = widget.lastDay.subtract(Duration(days: widget.daysVisible - 1));
 
-    for (int i = 0; i < daysVisible; i++) {
+    for (int i = 0; i < widget.daysVisible; i++) {
       list.add(_buildCell(firstDay.add(Duration(days: i))));
     }
 
@@ -47,7 +45,7 @@ class _WeekViewState extends State<WeekView> {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildCells(daysVisible),
+        children: _buildCells(),
       ),
     );
   }

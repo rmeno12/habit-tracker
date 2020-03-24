@@ -7,13 +7,14 @@ import 'package:habittracker/util/day.dart';
 class Cell extends StatefulWidget {
   final maxMarkers = 7;
   final DateTime date;
+  final StreamController<int> selectionController;
 
-  const Cell({this.date});
+  const Cell({this.date, this.selectionController});
 
   _CellState createState() => new _CellState();
 }
 
-class _CellState extends State<Cell> {
+class _CellState extends State<Cell> with TickerProviderStateMixin{
   bool isToday;
   Future<dynamic> day;
 
@@ -25,22 +26,33 @@ class _CellState extends State<Cell> {
         widget.date.year == DateTime.now().year;
 
     day = DatabaseHelper.db.getDay(Day.formatter.format(widget.date));
+
+    // _borderController = AnimationController(
+    //   vsync: this,
+    //   duration: Duration(milliseconds: 400),
+    // );
   }
 
   Widget build(BuildContext build) {
     return Expanded(
-      child: Card(
-        child: Container(
-          padding: EdgeInsets.only(top: 12),
-          child: AspectRatio(
-            aspectRatio: 1.0 / 2.0,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                _buildText(),
-                _buildMarkers(),
-              ],
+      child: GestureDetector(
+        onTap: () {
+          widget.selectionController
+              .add(Day.formatter.format(widget.date).hashCode);
+        },
+        child: Card(
+          child: Container(
+            padding: EdgeInsets.only(top: 12),
+            child: AspectRatio(
+              aspectRatio: 1.0 / 2.0,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  _buildText(),
+                  _buildMarkers(),
+                ],
+              ),
             ),
           ),
         ),
@@ -49,17 +61,31 @@ class _CellState extends State<Cell> {
   }
 
   Widget _buildText() {
-    return Container(
-      padding: EdgeInsets.all(6),
-      child: Text(
-        widget.date.day.toString(),
-        style: TextStyle(
-          color: isToday ? Colors.deepPurple : Colors.grey,
-          fontWeight: FontWeight.w800,
-          fontSize: 20,
-        ),
-      ),
-    );
+    return StreamBuilder<int>(
+        stream: widget.selectionController.stream,
+        builder: (context, snapshot) {
+          bool isSelected =
+              snapshot.data == Day.formatter.format(widget.date).hashCode;
+          return AnimatedContainer(
+              duration: Duration(milliseconds: 100),
+              padding: EdgeInsets.all(6),
+              child: Text(
+                widget.date.day.toString(),
+                style: TextStyle(
+                  color: isToday ? Colors.deepPurple : Colors.grey,
+                  fontWeight: FontWeight.w800,
+                  fontSize: 20,
+                ),
+              ),
+              decoration: BoxDecoration(
+                border: Border.all(
+                    width: 2,
+                    color: isSelected
+                        ? Colors.deepPurple
+                        : Colors.black),
+                borderRadius: isSelected ? BorderRadius.circular(32) : BorderRadius.circular(4),
+              ));
+        });
   }
 
   Widget _buildMarkers() {
