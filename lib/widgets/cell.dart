@@ -7,14 +7,14 @@ import 'package:habittracker/util/day.dart';
 class Cell extends StatefulWidget {
   final maxMarkers = 7;
   final DateTime date;
-  final StreamController<int> selectionController;
+  final StreamController<DateTime> selectionController;
 
   const Cell({this.date, this.selectionController});
 
   _CellState createState() => new _CellState();
 }
 
-class _CellState extends State<Cell> with TickerProviderStateMixin{
+class _CellState extends State<Cell> with TickerProviderStateMixin {
   bool isToday;
   Future<dynamic> day;
 
@@ -38,7 +38,7 @@ class _CellState extends State<Cell> with TickerProviderStateMixin{
       child: GestureDetector(
         onTap: () {
           widget.selectionController
-              .add(Day.formatter.format(widget.date).hashCode);
+              .add(DateTime.parse(Day.formatter.format(widget.date)));
         },
         child: Card(
           child: Container(
@@ -61,11 +61,11 @@ class _CellState extends State<Cell> with TickerProviderStateMixin{
   }
 
   Widget _buildText() {
-    return StreamBuilder<int>(
+    return StreamBuilder<DateTime>(
         stream: widget.selectionController.stream,
         builder: (context, snapshot) {
-          bool isSelected =
-              snapshot.data == Day.formatter.format(widget.date).hashCode;
+          bool isSelected = snapshot.data ==
+              DateTime.parse(Day.formatter.format(widget.date));
           return AnimatedContainer(
               duration: Duration(milliseconds: 100),
               padding: EdgeInsets.all(6),
@@ -80,10 +80,10 @@ class _CellState extends State<Cell> with TickerProviderStateMixin{
               decoration: BoxDecoration(
                 border: Border.all(
                     width: 2,
-                    color: isSelected
-                        ? Colors.deepPurple
-                        : Colors.grey),
-                borderRadius: isSelected ? BorderRadius.circular(32) : BorderRadius.circular(4),
+                    color: isSelected ? Colors.deepPurple : Colors.grey),
+                borderRadius: isSelected
+                    ? BorderRadius.circular(32)
+                    : BorderRadius.circular(4),
               ));
         });
   }

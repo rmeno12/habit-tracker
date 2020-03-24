@@ -7,7 +7,7 @@ import 'cell.dart';
 class WeekView extends StatefulWidget {
   final int daysVisible = 5;
   final DateTime lastDay;
-  final StreamController<int> selectionController;
+  final StreamController<DateTime> selectionController;
 
   const WeekView({this.lastDay, this.selectionController});
 
@@ -15,8 +15,7 @@ class WeekView extends StatefulWidget {
   _WeekViewState createState() => new _WeekViewState();
 }
 
-class _WeekViewState extends State<WeekView>{
-
+class _WeekViewState extends State<WeekView> {
   Widget _buildCell(DateTime day) {
     return Cell(
       date: day,
@@ -26,7 +25,8 @@ class _WeekViewState extends State<WeekView>{
 
   List<Widget> _buildCells() {
     List<Widget> list = [];
-    DateTime firstDay = widget.lastDay.subtract(Duration(days: widget.daysVisible - 1));
+    DateTime firstDay =
+        widget.lastDay.subtract(Duration(days: widget.daysVisible - 1));
 
     for (int i = 0; i < widget.daysVisible; i++) {
       list.add(_buildCell(firstDay.add(Duration(days: i))));

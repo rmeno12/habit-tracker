@@ -13,14 +13,14 @@ class WeekViewPager extends StatefulWidget {
 }
 
 class _WeekViewPagerState extends State<WeekViewPager> {
-  StreamController<int> _selectionController;
+  StreamController<DateTime> _selectionController;
 
   @override
   void initState() {
     super.initState();
-    _selectionController = StreamController<int>.broadcast();
+    _selectionController = StreamController<DateTime>.broadcast();
     _selectionController
-        .add(DateTime.parse(Day.formatter.format(DateTime.now())).hashCode);
+        .add(DateTime.parse(Day.formatter.format(DateTime.now())));
   }
 
   Widget build(BuildContext context) {
