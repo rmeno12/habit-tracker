@@ -82,7 +82,7 @@ class _CellState extends State<Cell> with TickerProviderStateMixin{
                     width: 2,
                     color: isSelected
                         ? Colors.deepPurple
-                        : Colors.black),
+                        : Colors.grey),
                 borderRadius: isSelected ? BorderRadius.circular(32) : BorderRadius.circular(4),
               ));
         });

@@ -15,10 +15,7 @@ class WeekView extends StatefulWidget {
   _WeekViewState createState() => new _WeekViewState();
 }
 
-class _WeekViewState extends State<WeekView> with AutomaticKeepAliveClientMixin{
-
-  @override
-  bool get wantKeepAlive => true;
+class _WeekViewState extends State<WeekView>{
 
   Widget _buildCell(DateTime day) {
     return Cell(
