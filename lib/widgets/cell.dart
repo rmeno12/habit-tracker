@@ -26,11 +26,6 @@ class _CellState extends State<Cell> with TickerProviderStateMixin {
         widget.date.year == DateTime.now().year;
 
     day = DatabaseHelper.db.getDay(Day.formatter.format(widget.date));
-
-    // _borderController = AnimationController(
-    //   vsync: this,
-    //   duration: Duration(milliseconds: 400),
-    // );
   }
 
   Widget build(BuildContext build) {
