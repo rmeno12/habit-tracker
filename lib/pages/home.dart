@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:habittracker/widgets/database_tester.dart';
+import 'package:habittracker/widgets/fab_menu.dart';
 import 'package:habittracker/widgets/week_view_pager.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,6 +26,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      floatingActionButton: FabMenu(),
     );
   }
 }
