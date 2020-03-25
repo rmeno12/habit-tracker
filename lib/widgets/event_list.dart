@@ -9,7 +9,13 @@ class _EventListState extends State<EventList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      
+      child: Column(
+        children: <Widget>[
+          Card(
+            child: Text('sdfsd'),
+          )
+        ],
+      ),
     );
   }
 }

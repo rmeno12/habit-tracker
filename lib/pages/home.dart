@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:habittracker/util/day.dart';
 import 'package:habittracker/widgets/database_tester.dart';
+import 'package:habittracker/widgets/event_list.dart';
 import 'package:habittracker/widgets/fab_menu.dart';
 import 'package:habittracker/widgets/week_view_pager.dart';
 
@@ -43,6 +44,7 @@ class _HomePageState extends State<HomePage> {
                 height: MediaQuery.of(context).size.height / 5,
                 child: WeekViewPager(selectionController: _selectionController,)),
             DatabaseTester(),
+            EventList(),
           ],
         ),
       ),
