@@ -18,10 +18,11 @@ class _HomePageState extends State<HomePage> {
         title: Text('Placeholder'),
       ),
       body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
+        child: ListView(
           children: <Widget>[
-            Expanded(child: WeekViewPager()),
+            SizedBox(
+                height: MediaQuery.of(context).size.height / 5,
+                child: WeekViewPager()),
             DatabaseTester(),
           ],
         ),
