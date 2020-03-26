@@ -41,10 +41,15 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           children: <Widget>[
             SizedBox(
-                height: MediaQuery.of(context).size.height / 5,
-                child: WeekViewPager(selectionController: _selectionController,)),
+              height: MediaQuery.of(context).size.height / 5,
+              child: WeekViewPager(
+                selectionController: _selectionController,
+              ),
+            ),
             DatabaseTester(),
-            EventList(),
+            EventList(
+              selectionController: _selectionController,
+            ),
           ],
         ),
       ),
