@@ -36,6 +36,7 @@ class _CellState extends State<Cell> with TickerProviderStateMixin {
               .add(DateTime.parse(Day.formatter.format(widget.date)));
         },
         child: Card(
+          elevation: 4,
           child: Container(
             padding: EdgeInsets.only(top: 12),
             child: AspectRatio(
