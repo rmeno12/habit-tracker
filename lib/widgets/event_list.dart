@@ -13,7 +13,11 @@ class _EventListState extends State<EventList> {
       padding: EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         children: <Widget>[
-          EventCard()
+          EventCard(
+            title: 'Title',
+            value: 'Value',
+            color: Colors.amber,
+          ),
         ],
       ),
     );

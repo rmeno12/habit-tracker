@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
+@immutable
 class EventCard extends StatelessWidget {
+  final String title;
+  final String value;
+  final Color color;
+
+  const EventCard({this.title, this.value, this.color});
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -13,7 +20,7 @@ class EventCard extends StatelessWidget {
           Container(
             width: 12,
             height: 55,
-            color: Colors.blue,
+            color: color,
             margin: EdgeInsets.only(right: 8),
           ),
           Column(
@@ -22,7 +29,7 @@ class EventCard extends StatelessWidget {
               Container(
                 padding: EdgeInsets.symmetric(vertical: 4),
                 child: Text(
-                  'Title',
+                  title,
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -31,7 +38,7 @@ class EventCard extends StatelessWidget {
               ),
               Container(
                 padding: EdgeInsets.only(bottom: 4),
-                child: Text('Value',
+                child: Text(value,
                     style: TextStyle(
                       color: Colors.blueGrey,
                       fontSize: 16,
