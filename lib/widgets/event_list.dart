@@ -24,7 +24,6 @@ class _EventListState extends State<EventList> {
       child: StreamBuilder<dynamic>(
           stream: widget.selectionController.stream,
           builder: (context, snapshot) {
-            print('Stream: ' + snapshot.toString());
             if (snapshot.connectionState == ConnectionState.waiting) {
               children = <Widget>[Text('nothing selected')];
             } else {
@@ -34,10 +33,7 @@ class _EventListState extends State<EventList> {
                       .getDay(Day.formatter.format(snapshot.data)),
                   builder: (context2, snapshot2) {
                     if (snapshot2.hasData) {
-                      print('Future: ' + snapshot2.toString());
-                      print('Future type: ' + snapshot2.data.runtimeType.toString());
                       if (snapshot2.data is Day) {
-                        print('snapshot 2 is day');
                         children = <Widget>[
                               Text(
                                 DateFormat('EEEE, MMMM d')
@@ -54,7 +50,6 @@ class _EventListState extends State<EventList> {
                                 )).toList();
                           print('here');
                       } else if (snapshot2.data is int) {
-                        print('snapshot2 is int');
                         children = <Widget>[
                           Text(
                             DateFormat('EEEE, MMMM d').format(snapshot.data),
