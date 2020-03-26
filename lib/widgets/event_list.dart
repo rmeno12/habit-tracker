@@ -23,53 +23,63 @@ class _EventListState extends State<EventList> {
       padding: EdgeInsets.symmetric(horizontal: 8),
       child: StreamBuilder<dynamic>(
           stream: widget.selectionController.stream,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              children = <Widget>[Text('nothing selected')];
-            } else {
-              children = <Widget>[Text(snapshot.data.toString())];
-              return FutureBuilder<dynamic>(
-                  future: DatabaseHelper.db
-                      .getDay(Day.formatter.format(snapshot.data)),
-                  builder: (context2, snapshot2) {
-                    if (snapshot2.hasData) {
-                      if (snapshot2.data is Day) {
-                        children = <Widget>[
-                              Text(
-                                DateFormat('EEEE, MMMM d')
-                                    .format(snapshot2.data.date),
-                                style: TextStyle(
-                                  fontSize: 24,
-                                ),
-                              )
-                            ] +
-                            snapshot2.data.eventList.map<Widget>((event) => EventCard(
-                                  title: event.name,
-                                  value: event.value,
-                                  color: event.color,
-                                )).toList();
-                          print('here');
-                      } else if (snapshot2.data is int) {
-                        children = <Widget>[
-                          Text(
-                            DateFormat('EEEE, MMMM d').format(snapshot.data),
-                            style: TextStyle(
-                              fontSize: 24,
-                            ),
-                          )
-                        ];
-                      }
-                    }
-                    return Column(
-                      children: children,
-                    );
-                  });
-            }
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: children,
-            );
-          }),
+          builder: (context, snapshot) => _buildStreamBuilder(snapshot)),
     );
+  }
+
+  Widget _buildFutureBuilder(
+      AsyncSnapshot streamSnapshot, AsyncSnapshot futureSnapshot) {
+    if (futureSnapshot.hasData) {
+      if (futureSnapshot.data is Day) {
+        children = <Widget>[
+              Text(
+                DateFormat('EEEE, MMMM d').format(futureSnapshot.data.date),
+                style: TextStyle(
+                  fontSize: 24,
+                ),
+              )
+            ] +
+            futureSnapshot.data.eventList
+                .map<Widget>((event) => EventCard(
+                      title: event.name,
+                      value: event.value,
+                      color: event.color,
+                    ))
+                .toList();
+        print('here');
+      } else if (futureSnapshot.data is int) {
+        children = <Widget>[
+          Text(
+            DateFormat('EEEE, MMMM d').format(streamSnapshot.data),
+            style: TextStyle(
+              fontSize: 24,
+            ),
+          )
+        ];
+      }
+    }
+    return Column(
+      children: children,
+    );
+  }
+
+  Widget _buildStreamBuilder(AsyncSnapshot snapshot) {
+    if (snapshot.connectionState == ConnectionState.waiting) {
+      children = _buildNothingSelected();
+    } else {
+      children = <Widget>[Text(snapshot.data.toString())];
+      return FutureBuilder<dynamic>(
+          future: DatabaseHelper.db.getDay(Day.formatter.format(snapshot.data)),
+          builder: (context2, snapshot2) =>
+              _buildFutureBuilder(snapshot, snapshot2));
+    }
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: children,
+    );
+  }
+
+  List<Widget> _buildNothingSelected() {
+    return <Widget>[Text('nothing selected')];
   }
 }
