@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:habittracker/pages/update_habit.dart';
 
 class FabMenu extends StatefulWidget {
   @override
@@ -77,6 +78,7 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
 
   Widget _menuButton() {
     return FloatingActionButton(
+      heroTag: 'menuBtn',
       backgroundColor: _animateColor.value,
       onPressed: animate,
       child: AnimatedIcon(
@@ -90,7 +92,12 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
     return Transform(
       transform: Matrix4.translationValues(0, _translateButton.value, 0),
       child: FloatingActionButton(
-        onPressed: () {},
+        heroTag: 'checkBtn',
+        onPressed: () {
+          Navigator.of(context).push(
+              new MaterialPageRoute(builder: (context) => UpdateHabitPage())
+          );
+        },
         child: Icon(Icons.check),
       ),
     );
@@ -100,6 +107,7 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
     return Transform(
       transform: Matrix4.translationValues(0, _translateButton.value * 2, 0),
       child: FloatingActionButton(
+        heroTag: 'mainBtn',
         onPressed: () {},
         child: Icon(Icons.add),
       ),
