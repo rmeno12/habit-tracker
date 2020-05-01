@@ -6,7 +6,8 @@ import 'week_view.dart';
 
 class WeekViewPager extends StatefulWidget {
   final StreamController<DateTime> selectionController;
-  WeekViewPager({this.selectionController});
+  final DateTime initDate;
+  WeekViewPager({this.selectionController, this.initDate});
 
   @override
   _WeekViewPagerState createState() => new _WeekViewPagerState();
@@ -19,7 +20,7 @@ class _WeekViewPagerState extends State<WeekViewPager> {
       controller: PageController(initialPage: 2048),
       itemBuilder: (BuildContext context, int index) {
         return WeekView(
-          lastDay: DateTime.now().add(Duration(days: (index - 2048) * 7)),
+          lastDay: widget.initDate.add(Duration(days: (index - 2048) * 7)),
           selectionController: widget.selectionController,
         );
       },

@@ -35,6 +35,12 @@ class _UpdateHabitPageState extends State<UpdateHabitPage> {
                 onPressed: () => _selectDate(context),
                 child: Text('Select date'),
               ),
+              RaisedButton(
+                child: Text('Submit'),
+                onPressed: () {
+                  Navigator.pop(context, selectedDate);
+                },
+              )
             ],
           ),
         ),

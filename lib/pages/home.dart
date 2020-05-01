@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:habittracker/pages/update_habit.dart';
 import 'package:habittracker/util/day.dart';
 import 'package:habittracker/widgets/database_tester.dart';
 import 'package:habittracker/widgets/event_list.dart';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   StreamController<DateTime> _selectionController;
+  DateTime initDate = DateTime.now();
 
   @override
   void initState() {
@@ -44,6 +46,7 @@ class _HomePageState extends State<HomePage> {
               height: MediaQuery.of(context).size.height / 5,
               child: WeekViewPager(
                 selectionController: _selectionController,
+                initDate: initDate,
               ),
             ),
             DatabaseTester(),
@@ -53,7 +56,22 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      floatingActionButton: FabMenu(),
+      floatingActionButton: FabMenu(
+        onNewButtonPressed: () {},
+        onUpdateButtonPressed: () {
+          _updateButtonCallback();
+        },
+      ),
     );
+  }
+
+  void _updateButtonCallback() async {
+    final newDay = await Navigator.push(context,
+        new MaterialPageRoute(builder: (context) => UpdateHabitPage()));
+
+    _selectionController.add(newDay);
+    setState(() {
+      initDate = newDay;
+    });
   }
 }

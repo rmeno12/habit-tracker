@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:habittracker/pages/update_habit.dart';
 
 class FabMenu extends StatefulWidget {
+  final VoidCallback onNewButtonPressed;
+  final VoidCallback onUpdateButtonPressed;
+
+  FabMenu({this.onNewButtonPressed, this.onUpdateButtonPressed});
+
   @override
   _FabMenuState createState() => _FabMenuState();
 }
@@ -61,7 +65,7 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
       mainAxisAlignment: MainAxisAlignment.end,
       children: <Widget>[
         _newButton(),
-        _checkButton(),
+        _updateButton(),
         _menuButton(),
       ],
     );
@@ -88,16 +92,12 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
     );
   }
 
-  Widget _checkButton() {
+  Widget _updateButton() {
     return Transform(
       transform: Matrix4.translationValues(0, _translateButton.value, 0),
       child: FloatingActionButton(
         heroTag: 'checkBtn',
-        onPressed: () {
-          Navigator.of(context).push(
-              new MaterialPageRoute(builder: (context) => UpdateHabitPage())
-          );
-        },
+        onPressed: widget.onUpdateButtonPressed,
         child: Icon(Icons.check),
       ),
     );
@@ -108,7 +108,7 @@ class _FabMenuState extends State<FabMenu> with SingleTickerProviderStateMixin {
       transform: Matrix4.translationValues(0, _translateButton.value * 2, 0),
       child: FloatingActionButton(
         heroTag: 'mainBtn',
-        onPressed: () {},
+        onPressed: widget.onNewButtonPressed,
         child: Icon(Icons.add),
       ),
     );
