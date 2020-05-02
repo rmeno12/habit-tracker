@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:habittracker/util/database_helper.dart';
+import 'package:habittracker/util/day_database_helper.dart';
 import 'package:habittracker/util/day.dart';
 
 class Cell extends StatefulWidget {
@@ -25,7 +25,7 @@ class _CellState extends State<Cell> with TickerProviderStateMixin {
         widget.date.month == DateTime.now().month &&
         widget.date.year == DateTime.now().year;
 
-    day = DatabaseHelper.db.getDay(Day.formatter.format(widget.date));
+    day = DayDatabaseHelper.db.getDay(Day.formatter.format(widget.date));
   }
 
   Widget build(BuildContext build) {

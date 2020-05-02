@@ -6,9 +6,9 @@ import 'package:sqflite/sqflite.dart';
 
 import 'day.dart';
 
-class DatabaseHelper {
-  DatabaseHelper._();
-  static final DatabaseHelper db = DatabaseHelper._();
+class DayDatabaseHelper {
+  DayDatabaseHelper._();
+  static final DayDatabaseHelper db = DayDatabaseHelper._();
 
   static Database _database;
 

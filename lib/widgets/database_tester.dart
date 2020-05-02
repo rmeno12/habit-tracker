@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:habittracker/util/database_helper.dart';
+import 'package:habittracker/util/day_database_helper.dart';
 import 'package:habittracker/util/day.dart';
 import 'package:habittracker/util/event.dart';
 
@@ -21,7 +21,7 @@ class DatabaseTester extends StatelessWidget {
       children: <Widget>[
         RaisedButton(
           onPressed: () async {
-            DatabaseHelper.db.newDay(Day(
+            DayDatabaseHelper.db.newDay(Day(
                 date: DateTime.parse(Day.formatter.format(now)),
                 eventList: eventList));
           },
@@ -29,13 +29,13 @@ class DatabaseTester extends StatelessWidget {
         RaisedButton(
           onPressed: () async {
             var result =
-                await DatabaseHelper.db.getDay(Day.formatter.format(now));
+                await DayDatabaseHelper.db.getDay(Day.formatter.format(now));
             print(result);
           },
         ),
         RaisedButton(
           onPressed: () async {
-            DatabaseHelper.db.deleteDay(Day(
+            DayDatabaseHelper.db.deleteDay(Day(
                 date: DateTime.parse(Day.formatter.format(now)),
                 eventList: eventList));
           },
