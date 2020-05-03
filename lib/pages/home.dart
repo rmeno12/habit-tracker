@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:habittracker/pages/new_habit.dart';
 import 'package:habittracker/pages/update_habit.dart';
 import 'package:habittracker/util/day.dart';
 import 'package:habittracker/widgets/database_tester.dart';
@@ -57,12 +58,26 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FabMenu(
-        onNewButtonPressed: () {},
+        onNewButtonPressed: () {
+          _newButtonCallback();
+        },
         onUpdateButtonPressed: () {
           _updateButtonCallback();
         },
       ),
     );
+  }
+
+  void _newButtonCallback() async {
+    final newDay = await Navigator.push(context,
+        new MaterialPageRoute(builder: (context) => NewHabitPage()));
+
+    _selectionController.add(newDay);
+    setState(() {
+      if (newDay != null) {
+        initDate = newDay;
+      }
+    });
   }
 
   void _updateButtonCallback() async {
@@ -71,7 +86,9 @@ class _HomePageState extends State<HomePage> {
 
     _selectionController.add(newDay);
     setState(() {
-      initDate = newDay;
+      if (newDay != null) {
+        initDate = newDay;
+      }
     });
   }
 }

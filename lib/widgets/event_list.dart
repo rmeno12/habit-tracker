@@ -64,7 +64,7 @@ class _EventListState extends State<EventList> {
   }
 
   Widget _buildStreamBuilder(AsyncSnapshot snapshot) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
+    if (snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) {
       children = _buildNothingSelected();
     } else {
       children = <Widget>[Text(snapshot.data.toString())];

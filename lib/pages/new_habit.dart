@@ -8,6 +8,12 @@ class NewHabitPage extends StatefulWidget {
 class _NewHabitPageState extends State<NewHabitPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: Container(
+          child: Text('random')
+        ),
+      ),
+    );
   }
 }
