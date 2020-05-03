@@ -8,6 +8,7 @@ void main() {
   MaterialApp app = MaterialApp(
     home: WeekViewPager(
       selectionController: StreamController<DateTime>.broadcast(),
+      initDate: DateTime.now(),
     ),
   );
 
