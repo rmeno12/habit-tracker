@@ -8,6 +8,9 @@ class NewHabitPage extends StatefulWidget {
 
 class _NewHabitPageState extends State<NewHabitPage> {
   final titleController = TextEditingController();
+  final headerStyle = TextStyle(
+    fontSize: 24,
+  );
   bool dateIncluded = false;
   DateTime selectedDate;
 
@@ -31,10 +34,15 @@ class _NewHabitPageState extends State<NewHabitPage> {
             padding: EdgeInsets.all(12),
             child: ListView(
               children: <Widget>[
-                Text(
-                  'Create a new habit',
-                  style: TextStyle(
-                    fontSize: 32,
+                Text('Create a new habit',
+                    style: TextStyle(
+                      fontSize: 32,
+                    )),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12.0, bottom: 4.0),
+                  child: Text(
+                    'Give your habit a name',
+                    style: headerStyle,
                   ),
                 ),
                 TextField(
@@ -42,34 +50,45 @@ class _NewHabitPageState extends State<NewHabitPage> {
                   decoration:
                       InputDecoration(hintText: 'Enter the name of your habit'),
                 ),
-                Text('header: values'),
+                Divider(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12.0, bottom: 4.0),
+                  child: Text(
+                    'Add values to your habit',
+                    style: headerStyle,
+                  ),
+                ),
                 Text('thing to add/remove types of values'),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Text('date picker for first day'),
+                    Text('Include a first day?'),
                     Checkbox(
                       value: dateIncluded,
                       onChanged: (value) {
                         setState(() {
                           dateIncluded = !dateIncluded;
                         });
-                        print(value);
                       },
                     )
                   ],
                 ),
-                RaisedButton(
-                  child: Text('Select date'),
-                  onPressed: dateIncluded
-                      ? () {
-                          _selectDate(context);
-                        }
-                      : null,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text(selectedDate == null || !dateIncluded
+                        ? "No first day selected"
+                        : "First day is $selectedDate"),
+                    RaisedButton(
+                      child: Text('Select date'),
+                      onPressed: dateIncluded
+                          ? () {
+                              _selectDate(context);
+                            }
+                          : null,
+                    ),
+                  ],
                 ),
-                Text(selectedDate == null || !dateIncluded
-                    ? "No date selected"
-                    : "First day is $selectedDate"),
                 RaisedButton(
                   // TODO: Implement submission action
                   onPressed: () {},
