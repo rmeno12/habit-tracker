@@ -41,20 +41,22 @@ class _HomePageState extends State<HomePage> {
         title: Text('Placeholder'),
       ),
       body: Container(
-        child: ListView(
-          children: <Widget>[
-            SizedBox(
-              height: MediaQuery.of(context).size.height / 5,
-              child: WeekViewPager(
-                selectionController: _selectionController,
-                initDate: initDate,
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 5,
+                child: WeekViewPager(
+                  selectionController: _selectionController,
+                  initDate: initDate,
+                ),
               ),
-            ),
-            DatabaseTester(),
-            EventList(
-              selectionController: _selectionController,
-            ),
-          ],
+              DatabaseTester(),
+              EventList(
+                selectionController: _selectionController,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FabMenu(
@@ -69,8 +71,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _newButtonCallback() async {
-    final newDay = await Navigator.push(context,
-        new MaterialPageRoute(builder: (context) => NewHabitPage()));
+    final newDay = await Navigator.push(
+        context, new MaterialPageRoute(builder: (context) => NewHabitPage()));
 
     _selectionController.add(newDay);
     setState(() {

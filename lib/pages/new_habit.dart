@@ -31,8 +31,9 @@ class _NewHabitPageState extends State<NewHabitPage> {
     return Scaffold(
       body: Center(
         child: Container(
-            padding: EdgeInsets.all(12),
-            child: ListView(
+          padding: EdgeInsets.all(12),
+          child: SingleChildScrollView(
+            child: Column(
               children: <Widget>[
                 Text('Create a new habit',
                     style: TextStyle(
@@ -95,7 +96,9 @@ class _NewHabitPageState extends State<NewHabitPage> {
                   child: Text('Create habit'),
                 )
               ],
-            )),
+            ),
+          ),
+        ),
       ),
     );
   }
