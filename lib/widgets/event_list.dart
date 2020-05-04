@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:habittracker/util/database_helper.dart';
+import 'package:habittracker/util/day_database_helper.dart';
 import 'package:habittracker/util/day.dart';
 import 'package:habittracker/widgets/event_card.dart';
 import 'package:intl/intl.dart';
@@ -64,12 +64,12 @@ class _EventListState extends State<EventList> {
   }
 
   Widget _buildStreamBuilder(AsyncSnapshot snapshot) {
-    if (snapshot.connectionState == ConnectionState.waiting) {
+    if (snapshot.connectionState == ConnectionState.waiting || snapshot.data == null) {
       children = _buildNothingSelected();
     } else {
       children = <Widget>[Text(snapshot.data.toString())];
       return FutureBuilder<dynamic>(
-          future: DatabaseHelper.db.getDay(Day.formatter.format(snapshot.data)),
+          future: DayDatabaseHelper.db.getDay(Day.formatter.format(snapshot.data)),
           builder: (context2, snapshot2) =>
               _buildFutureBuilder(snapshot, snapshot2));
     }
