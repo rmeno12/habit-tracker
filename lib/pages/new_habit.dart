@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:habittracker/widgets/value_table.dart';
 
 class NewHabitPage extends StatefulWidget {
   @override
@@ -59,7 +60,7 @@ class _NewHabitPageState extends State<NewHabitPage> {
                     style: headerStyle,
                   ),
                 ),
-                Text('thing to add/remove types of values'),
+                ValueTable(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[

@@ -6,8 +6,25 @@ class ValueTable extends StatefulWidget {
 }
 
 class _ValueTableState extends State<ValueTable> {
+  List<TableRow> _rows = [];
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Column(
+      children: <Widget>[
+        Row(
+          children: <Widget>[
+            Text('Add a new value'),
+            IconButton(
+              icon: Icon(Icons.add),
+              onPressed: () {},
+            )
+          ],
+        ),
+        Table(
+          children: _rows,
+        ),
+      ],
+    );
   }
 }
